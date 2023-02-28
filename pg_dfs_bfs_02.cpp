@@ -15,7 +15,7 @@ int result = 1000000;
 
 void move(int curX, int curY, int itemX, int itemY, int count) {
     if(curX == itemX && curY == itemY) {
-        //cout << "find! curX : " << curX << ", curY : " << curY << ", count : " << count << "\n";
+        //cout << "find! x : " << x << ", y : " << y << ", count : " << count << "\n";
         if(result > count) result = count;
         return;
     }
