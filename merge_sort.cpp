@@ -1,9 +1,8 @@
-// merge sort 구현
+// merge sorted 구현
 #include <iostream>
 using namespace std;
 
-int arr[9] = { 1, 9, 3, 7, 5, 2, 4, 6, 9 };
-int sort[9] = { 0, };
+int sorted[9] = {0, };
 
 void merge(int *arr, int start, int mid, int end) {
 	int i = start;
@@ -11,25 +10,25 @@ void merge(int *arr, int start, int mid, int end) {
 	int k = start;
 	while (i <= mid && j <= end) {
 		if (arr[i] <= arr[j]) {
-			sort[k] = arr[i++];
+            sorted[k] = arr[i++];
 		}
 		else {
-			sort[k] = arr[j++];
+            sorted[k] = arr[j++];
 		}
 		k++;
 	}
 	if (i > mid) {
 		for (int t = j; t <= end; t++) {
-			sort[k++] = arr[t];
+            sorted[k++] = arr[t];
 		}
 	}
 	else {
 		for (int t = i; t <= mid; t++) {
-			sort[k++] = arr[t];
+            sorted[k++] = arr[t];
 		}
 	}
 
-	for (int t = start; t <= end; t++) arr[t] = sort[t];
+	for (int t = start; t <= end; t++) arr[t] = sorted[t];
 }
 
 void merge_sort(int* arr, int start, int end) {
@@ -49,7 +48,7 @@ int main() {
 	for (int i = 0; i < 9; i++) cout << arr[i] << " ";
 	merge_sort(arr, 0, 8);
 	cout << "\nsorted\n";
-	for (int i = 0; i < 9; i++) cout << arr[i] << " ";
+	for (int i = 0; i < 9; i++) cout << sorted[i] << " ";
 
 	return 0;
 	
