@@ -151,5 +151,5 @@ fabric.properties
 CMakeLists.txt
 main
 
-sm_2_01.cpp
+swm_2_01.cpp
 # End of https://www.toptal.com/developers/gitignore/api/clion,c++
