@@ -38,8 +38,7 @@ void springAndSummer(int n) {
             int idx = 0;
             while (idx < trees.size() && energy[i][j] >= trees[idx]) {
                 energy[i][j] -= trees[idx];   // 양분을 먹고
-                trees[idx]++;   // 나이를 한 살 먹음
-                idx++;
+                trees[idx++]++;   // 나이를 한 살 먹음
             }
             for (int k = trees.size() - 1; k >= idx; k--) {
                 energy[i][j] += (trees[k] / 2);   // 여름에 죽은 나무만큼 양분을 더함
@@ -53,11 +52,7 @@ void fallAndWinter(int n) {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             deque<int> &trees = ground[i][j].trees;
-            for (auto &t: trees) {
-                if (t % 5 == 0) {
-                    breeding(i, j, n);   // 번식
-                }
-            }
+            for (auto &t: trees) if (t % 5 == 0) breeding(i, j, n);   // 번식
             energy[i][j] += robot[i][j];   // 겨울에 에너지를 더함
         }
     }
