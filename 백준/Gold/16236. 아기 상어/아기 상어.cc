@@ -1,8 +1,6 @@
 // 아기 상어
 #include <iostream>
 #include <queue>
-#include <cmath>
-
 #define MAX 20
 using namespace std;
 
@@ -10,7 +8,6 @@ struct position {
     int x;
     int y;
     int dist;
-
     position(int X, int Y, int DIST) : x(X), y(Y), dist(DIST) {}
 };
 
@@ -49,7 +46,6 @@ bool bfs(int x, int y) {
         int curX = q.front().x;
         int curY = q.front().y;
         int curDist = q.front().dist;
-//        visited[curX][curY] = true;
         q.pop();
         for (int i = 0; i < 4; i++) {
             int nextX = curX + xDir[i];
