@@ -31,28 +31,8 @@ int yDir[5] = {0, 0, 0, 1, -1};   // - 위 아래 오른쪽 왼쪽
 int closest[MAX];
 int r, c, m;
 
-void printMap() {
-    cout << "=====map=====\n";
-    for (int i = 1; i <= r; i++) {
-        for (int j = 1; j <= c; j++) {
-            cout << "(" << map[i][j].speed << "," << map[i][j].size << ")\t";
-        }
-        cout << "\n";
-    }
-}
-
-void printClosest() {
-    for (int i = 1; i <= c; i++) cout << closest[i] << " ";
-    cout << "\n";
-}
-
 void initClosest() {
     for (int i = 1; i <= c; i++) closest[i] = 200;
-}
-
-bool outOfBorder(int x, int y) {
-    if (x < 1 || x > r || y < 1 | y > c) return true;
-    return false;
 }
 
 int changeDir(int dir) {
@@ -69,22 +49,20 @@ int eat(int col) {
 }
 
 void swim() {
-    // 각 칸에 있는 상어들의 수영
     shark diff[MAX][MAX];
     for (int i = 1; i <= r; i++) {
         for (int j = 1; j <= c; j++) {
             shark &curShark = map[i][j];
             int curX = curShark.x;   // 상어의 x 좌표
             int curY = curShark.y;   // 상어의 y 좌표
+            int curSpeed = curShark.speed;
             if (curX == 0) continue;   // 상어가 없는 곳은 확인할 필요 없음
-            // 이동 후 최종 좌표가 어디인지 결정
             if (curShark.dir == 1) {
                 // 위
                 if (curShark.speed < curX) {
                     // 이동하면서 방향 전환을 할 필요가 없음
                     curX += (curShark.speed * xDir[1]);
                 } else {
-                    int curSpeed = curShark.speed;
                     curSpeed -= (curX - 1);   // 우선 맨 위로 이동
                     curShark.dir = changeDir(curShark.dir);   // 끝에 간 다음 방향 한번 바뀜 -> 아래
                     int share = curSpeed / (r - 1);   // 방향을 몇번 바꿨는지 확인
@@ -104,7 +82,6 @@ void swim() {
                     // 이동하면서 방향 전환을 할 필요가 없음
                     curX += (curShark.speed * xDir[2]);
                 } else {
-                    int curSpeed = curShark.speed;
                     curSpeed -= (r - curX);
                     curShark.dir = changeDir(curShark.dir);   // 끝에 간 다음 방향 한번 바꿈 -> 위
                     int share = curSpeed / (r - 1);
@@ -124,7 +101,6 @@ void swim() {
                     // 이동하면서 방향 전환을 할 필요가 없음
                     curY += (curShark.speed * yDir[3]);
                 } else {
-                    int curSpeed = curShark.speed;
                     curSpeed -= (c - curY);
                     curShark.dir = changeDir(curShark.dir);   // 끝에 간 다음 방향 한번 바꿈 -> 왼쪽
                     int share = curSpeed / (c - 1);
@@ -144,7 +120,6 @@ void swim() {
                     // 이동하면서 방향 전환을 할 필요가 없음
                     curY += (curShark.speed * yDir[4]);
                 } else {
-                    int curSpeed = curShark.speed;
                     curSpeed -= (curY - 1);
                     curShark.dir = changeDir(curShark.dir);   // 끝에 간 다음 방향 한번 바꿈 -> 오른쪽
                     int share = curSpeed / (c - 1);
@@ -206,9 +181,6 @@ int main() {
         if (closest[y] > x) closest[y] = x;
     }
 
-//    printMap();
-//    printClosest();
-
     for (int i = 1; i <= c; i++) {
         int row = eat(i);   // i번째 열에 있는 상어를 먹음
         if (row != 0) {
@@ -221,8 +193,6 @@ int main() {
         }
         initClosest();
         swim();
-//        printMap();
-//        printClosest();
     }
 
     cout << ans;
