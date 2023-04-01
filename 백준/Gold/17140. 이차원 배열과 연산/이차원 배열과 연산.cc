@@ -21,25 +21,11 @@ struct num {
     }
 
     bool operator<(const num &NUM) const {
-        if(cnt == NUM.cnt) {
-            return n > NUM.n;
-        } else {
-            return cnt > NUM.cnt;
-        }
+        if (cnt == NUM.cnt) return n > NUM.n;
+        else return cnt > NUM.cnt;
     }
 
 };
-
-//void printArr() {
-//    cout << "=====arr=====\n";
-//    cout << "curRow : " << curRow << ", curCol : " << curCol << "\n";
-//    for (int i = 1; i <= 10; i++) {
-//        for (int j = 1; j <= 10; j++) {
-//            cout << arr[i][j] << " ";
-//        }
-//        cout << "\n";
-//    }
-//}
 
 void doRowSort() {
     int maxCol = -1;
@@ -48,18 +34,14 @@ void doRowSort() {
         priority_queue<num> pq;
         for (int j = 1; j <= curCol; j++) {
             int index = arr[i][j];
-            if (numCnt[index].n == 0) {
-                numCnt[index].n = arr[i][j];
-            }
+            if (numCnt[index].n == 0) numCnt[index].n = arr[i][j];
             numCnt[index].cnt++;
             arr[i][j] = 0;
         }
         for (int index = 1; index < MAX; index++) {
-            if (numCnt[index].n != 0)
-                pq.push(numCnt[index]);
+            if (numCnt[index].n != 0) pq.push(numCnt[index]);
         }
-        if ((int) (pq.size() * 2) > maxCol)
-            maxCol = pq.size() * 2;
+        if ((int) (pq.size() * 2) > maxCol) maxCol = pq.size() * 2;
         int idx = 1;
         while (!pq.empty()) {
             num curNum = pq.top();
@@ -70,7 +52,6 @@ void doRowSort() {
     }
     if (maxCol > 100) curCol = 100;
     else curCol = maxCol;
-//    printArr();
 }
 
 void doColSort() {
@@ -80,19 +61,14 @@ void doColSort() {
         priority_queue<num> pq;
         for (int j = 1; j <= curRow; j++) {
             int index = arr[j][i];
-            if (numCnt[index].n == 0) {
-                numCnt[index].n = arr[j][i];
-            }
+            if (numCnt[index].n == 0) numCnt[index].n = arr[j][i];
             numCnt[index].cnt++;
             arr[j][i] = 0;
         }
         for (int index = 1; index < MAX; index++) {
-            if (numCnt[index].n != 0)
-                pq.push(numCnt[index]);
-
+            if (numCnt[index].n != 0) pq.push(numCnt[index]);
         }
-        if ((int) (pq.size() * 2) > maxRow)
-            maxRow = pq.size() * 2;
+        if ((int) (pq.size() * 2) > maxRow) maxRow = pq.size() * 2;
         int idx = 1;
         while (!pq.empty()) {
             num curNum = pq.top();
@@ -104,15 +80,11 @@ void doColSort() {
     }
     if (maxRow > 100) curRow = 100;
     else curRow = maxRow;
-//    printArr();
 }
 
 void doSort() {
-    if (curRow >= curCol) {
-        doRowSort();
-    } else {
-        doColSort();
-    }
+    if (curRow >= curCol) doRowSort();
+    else doColSort();
 }
 
 int main() {
@@ -127,8 +99,6 @@ int main() {
             cin >> arr[i][j];
         }
     }
-
-//    printArr();
 
     if (arr[r][c] == k) cout << 0;
     else {
