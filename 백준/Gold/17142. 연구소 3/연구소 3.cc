@@ -34,16 +34,6 @@ void initTotalTime() {
     }
 }
 
-//void printTotalTime() {
-//    cout << "=====total time=====\n";
-//    for (int i = 0; i < n; i++) {
-//        for (int j = 0; j < n; j++) {
-//            cout << totalTime[i][j] << "\t";
-//        }
-//        cout << "\n";
-//    }
-//}
-
 bool canGo(int x, int y, bool visited[][MAX]) {
     if (x < 0 || x >= n || y < 0 || y >= n || visited[x][y] || map[x][y] == 1)
         return false;   // 벽이 있는 경우, 비활성 바이러스가 있는 곳일 경우
@@ -73,13 +63,7 @@ int findMaxTime() {
 void combination(int start) {
     if (resultPos.size() == m) {
         initTotalTime();
-//        cout << "======\t";
-        for (auto &r: resultPos) {
-            totalTime[r.x][r.y] = 0;
-//            cout << "(" << r.x << ", " << r.y << ")\t";
-        }
-//        cout << "======\n";
-        int perMax = -1;
+        for (auto &r: resultPos) totalTime[r.x][r.y] = 0;
         for (auto &r: resultPos) {
             bool perVisited[MAX][MAX] = {false,};
             queue<pos> q;
@@ -98,18 +82,13 @@ void combination(int start) {
                     if (canGo(nextX, nextY, perVisited)) {
                         perVisited[nextX][nextY] = true;
                         q.push(pos(nextX, nextY, curCnt + 1));
-                        if (totalTime[nextX][nextY] > curCnt + 1) {
-                            // 아직 바이러스가 퍼지지 않은 곳(200) 또는 기존보다 더 빨리 퍼질 수 있는 경우의 수
-                            totalTime[nextX][nextY] = curCnt + 1;
-                        }
+                        if (totalTime[nextX][nextY] > curCnt + 1) totalTime[nextX][nextY] = curCnt + 1; // 아직 바이러스가 퍼지지 않은 곳(200) 또는 기존보다 더 빨리 퍼질 수 있는 경우의 수
                     }
                 }
             }
         }
-//        printTotalTime();
         int maxTime = findMaxTime();
         if (maxTime != -1 && maxTime < minAns) minAns = maxTime;
-//        cout << "maxTime : " << maxTime << "\n";
     }
 
     for (int i = start; i < virusPos.size(); i++) {
@@ -132,10 +111,6 @@ int main() {
             if (map[i][j] == 2) virusPos.push_back(pos(i, j, 0));   // 바이러스가 저장될 수 있는 위치
         }
     }
-
-//    for (auto &v: virusPos) {
-//        cout << "(" << v.x << ", " << v.y << ")\n";
-//    }
 
     combination(0);
 
