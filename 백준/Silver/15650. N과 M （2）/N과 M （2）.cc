@@ -1,6 +1,5 @@
-// n과 m (1)
+// n과 m (2)
 #include <iostream>
-#include <algorithm>
 
 #define MAX 9
 using namespace std;
@@ -12,7 +11,7 @@ int n, m;
 
 void dfs(int start, int cnt) {
     if (cnt == m) {
-        for(int i=0; i<m; i++) cout << result[i] << " ";
+        for (int i = 0; i < m; i++) cout << result[i] << " ";
         cout << "\n";
     }
     for (int i = start; i <= n; i++) {
