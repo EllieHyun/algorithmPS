@@ -1,6 +1,5 @@
 // n과 m (1)
 #include <iostream>
-#include <algorithm>
 
 #define MAX 9
 using namespace std;
@@ -12,8 +11,9 @@ int n, m;
 
 void dfs(int cnt) {
     if (cnt == m) {
-        for(int i=0; i<m; i++) cout << result[i] << " ";
+        for (int i = 0; i < m; i++) cout << result[i] << " ";
         cout << "\n";
+        return;
     }
     for (int i = 1; i <= n; i++) {
         if (visited[i]) continue;
