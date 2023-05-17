@@ -1,11 +1,10 @@
-// n과 m (1)
+// n과 m (3)
 #include <iostream>
 #include <vector>
 #define MAX 9
 using namespace std;
 
 bool visited[MAX];
-int num[MAX];
 int n, m;
 vector<int> result;
 
@@ -16,7 +15,7 @@ void dfs(int cnt) {
         return;
     }
     for (int i = 1; i <= n; i++) {
-        result.push_back(num[i]);
+        result.push_back(i);
         dfs(cnt + 1);
         result.pop_back();
     }
@@ -28,9 +27,7 @@ int main() {
     cout.tie(0);
 
     cin >> n >> m;
-
-    for (int i = 1; i <= n; i++) num[i] = i;
-
+    
     dfs(0);
 
     return 0;
