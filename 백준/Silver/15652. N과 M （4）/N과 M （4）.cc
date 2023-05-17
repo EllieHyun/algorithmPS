@@ -6,8 +6,8 @@ using namespace std;
 
 bool visited[MAX];
 int num[MAX];
+int result[MAX];
 int n, m;
-vector<int> result;
 
 void dfs(int start, int cnt) {
     if (cnt == m) {
@@ -16,9 +16,8 @@ void dfs(int start, int cnt) {
         return;
     }
     for (int i = start; i <= n; i++) {
-        result.push_back(num[i]);
+        result[cnt] = num[i];
         dfs(i, cnt + 1);
-        result.pop_back();
     }
 }
 
