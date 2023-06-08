@@ -21,9 +21,8 @@ int main() {
     // 최댓값의 최솟값
     // k : 돌을 한번 건널 때 쓸 수 있는 힘의 최댓값
     // dp[i] : i번째 돌까지 건너가는 경우, 한번 돌을 건널 때 K의 최솟값
-//
+
     dp[1] = 0;
-//    dp[2] = 1 + (abs(dp[1] - dp[2]));   // = 4
 
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= i - 1; j++) {
@@ -31,7 +30,7 @@ int main() {
             dp[i] = min(dp[i], max(dp[j], jump));
         }
     }
-    
+
     cout << dp[n];
 
     return 0;
