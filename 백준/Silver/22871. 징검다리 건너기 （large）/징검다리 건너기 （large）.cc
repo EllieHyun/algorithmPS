@@ -15,9 +15,6 @@ int main() {
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> rock[i];
-    }
-
-    for (int i = 2; i <= n; i++) {
         dp[i] = 2e9;
     }
 
@@ -25,7 +22,7 @@ int main() {
     // k : 돌을 한번 건널 때 쓸 수 있는 힘의 최댓값
     // dp[i] : i번째 돌까지 건너가는 경우, 한번 돌을 건널 때 K의 최솟값
 //
-//    dp[1] = 0;
+    dp[1] = 0;
 //    dp[2] = 1 + (abs(dp[1] - dp[2]));   // = 4
 
     for (int i = 1; i <= n; i++) {
@@ -34,7 +31,7 @@ int main() {
             dp[i] = min(dp[i], max(dp[j], jump));
         }
     }
-
+    
     cout << dp[n];
 
     return 0;
