@@ -1,10 +1,10 @@
 # [unrated] 연속된 부분 수열의 합 - 178870 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/178870) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/178870?language=java) 
 
 ### 성능 요약
 
-메모리: 4.22 MB, 시간: 0.01 ms
+메모리: 73.2 MB, 시간: 0.03 ms
 
 ### 구분
 
