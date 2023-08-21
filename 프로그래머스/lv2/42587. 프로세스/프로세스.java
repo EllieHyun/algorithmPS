@@ -34,22 +34,14 @@ class Solution {
         while(!q.isEmpty()) {
             Process curProcess = q.poll();
             Process maxProcess = pq.peek();
-            // System.out.println("cur : " + curProcess.index + ", " + curProcess.priority);
-            // System.out.println("max : " + maxProcess.index + ", " + maxProcess.priority);
             if(curProcess.priority == maxProcess.priority) {
                 pq.poll();
                 answer++;
-                if(curProcess.index == location) {
-                    return answer;
-                }
+                if(curProcess.index == location) return answer;
             } else {
                 q.offer(curProcess);
-            }
-            
-            
+            }   
         }
-        
-        
         return answer;
     }
 }
