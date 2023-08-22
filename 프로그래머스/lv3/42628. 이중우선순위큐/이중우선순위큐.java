@@ -15,16 +15,11 @@ class Solution {
                 int index = list.indexOf(value);
                 list.remove(index);
             } else if(!list.isEmpty()) {
-                // System.out.println("pop max");
                 int value = Collections.max(list);
                 int index = list.indexOf(value);
                 list.remove(index);
             }
         }
-        
-        // for(int i : list) {
-        //     System.out.print(i + " ");
-        // }
         
         if(list.isEmpty()) return answer;
         else {
