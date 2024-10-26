@@ -1,25 +1,24 @@
-// n과 m (1)
+// N과 M (1)
 #include <iostream>
+#include <vector>
 
 #define MAX 9
 using namespace std;
 
-bool visited[MAX];
-int num[MAX];
-int result[MAX];
+vector<bool> visited(MAX, false);
+vector<int> vec(MAX);
 int n, m;
 
-void dfs(int cnt) {
+void permutation(int cnt) {
     if (cnt == m) {
-        for (int i = 0; i < m; i++) cout << result[i] << " ";
+        for (int i = 0; i < m; i++) cout << vec[i] << " ";
         cout << "\n";
-        return;
     }
     for (int i = 1; i <= n; i++) {
         if (visited[i]) continue;
         visited[i] = true;
-        result[cnt] = num[i];
-        dfs(cnt + 1);
+        vec[cnt] = i;
+        permutation(cnt + 1);
         visited[i] = false;
     }
 }
@@ -31,9 +30,7 @@ int main() {
 
     cin >> n >> m;
 
-    for (int i = 1; i <= n; i++) num[i] = i;
-
-    dfs(0);
+    permutation(0);
 
     return 0;
 }
